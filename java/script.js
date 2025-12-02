@@ -1,9 +1,11 @@
 // Smooth scrolling para links de navegação
+// Quando clica em links que começam com # (âncora), faz rolagem suave até a seção
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Impede o comportamento padrão do link
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            // Rola suavemente até o elemento alvo
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -13,6 +15,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Botão do Jogo Corporativo
+// Quando clica no botão do jogo, mostra animação de carregamento e abre o jogo
 document.getElementById('jogo-button').addEventListener('click', function() {
     const button = this;
     
@@ -27,20 +30,22 @@ document.getElementById('jogo-button').addEventListener('click', function() {
         // Abre o jogo em uma nova aba
         window.open(linkJogo, '_blank');
         
-        // Restaura o botão
+        // Restaura o botão ao estado original
         button.innerHTML = '<i class="fas fa-gamepad"></i> Acessar o Jogo';
         button.disabled = false;
         
         // Mostra mensagem de sucesso
         showNotification('Jogo aberto em nova aba!', 'success');
-    }, 1000);
+    }, 1000); // Espera 1 segundo (simula carregamento)
 });
 
 // Feedback Game
+// Sistema de votação para avaliar a comunicação da empresa
 document.addEventListener('DOMContentLoaded', function() {
-    const optionButtons = document.querySelectorAll('.option-btn');
-    const feedbackResult = document.getElementById('feedback-result');
+    const optionButtons = document.querySelectorAll('.option-btn'); // Botões de opção
+    const feedbackResult = document.getElementById('feedback-result'); // Área do resultado
 
+    // Respostas possíveis para cada opção
     const responses = {
         excelente: {
             title: '🎉 Excelente!',
@@ -64,22 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Adiciona evento de clique em cada botão de opção
     optionButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const value = this.getAttribute('data-value');
-            const response = responses[value];
+            const value = this.getAttribute('data-value'); // Pega o valor da opção
+            const response = responses[value]; // Pega a resposta correspondente
 
-            // Reset all buttons
+            // Remove destaque de todos os botões
             optionButtons.forEach(btn => {
                 btn.style.borderColor = '#e2e5ee';
                 btn.style.transform = 'translateY(0)';
             });
 
-            // Highlight selected button
+            // Destaca o botão selecionado
             this.style.borderColor = response.color;
             this.style.transform = 'translateY(-5px)';
 
-            // Show feedback result
+            // Mostra o resultado do feedback
             feedbackResult.innerHTML = `
                 <h3 style="color: ${response.color}; margin-bottom: 1rem;">${response.title}</h3>
                 <p>${response.message}</p>
@@ -87,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             feedbackResult.style.display = 'block';
             feedbackResult.classList.add('show');
 
-            // Add to localStorage para possível análise posterior
+            // Salva o feedback no localStorage para análise posterior
             const feedbackData = {
                 rating: value,
                 timestamp: new Date().toISOString()
@@ -98,29 +104,34 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Form submission
+// Quando o formulário de contato é enviado
 document.querySelector('.contato-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+    e.preventDefault(); // Impede o envio padrão do formulário
     
+    // Pega os dados do formulário
     const formData = {
         nome: this.querySelector('input[type="text"]').value,
         email: this.querySelector('input[type="email"]').value,
         mensagem: this.querySelector('textarea').value
     };
 
-    // Simulação de envio
+    // Simulação de envio (sem backend real)
     const button = this.querySelector('button');
     const originalText = button.innerHTML;
     
+    // Mostra animação de carregamento
     button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
     button.disabled = true;
 
     setTimeout(() => {
+        // Simula envio bem-sucedido após 2 segundos
         button.innerHTML = '<i class="fas fa-check"></i> Mensagem Enviada!';
         button.style.background = '#4CAF50';
         
-        // Reset form
+        // Limpa o formulário
         this.reset();
         
+        // Restaura o botão após 3 segundos
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.background = '';
@@ -130,38 +141,41 @@ document.querySelector('.contato-form').addEventListener('submit', function(e) {
 });
 
 // Animação de entrada para elementos
+// Faz elementos aparecerem suavemente quando entram na tela
 const observerOptions = {
-    threshold: 0.1,
+    threshold: 0.1, // Quando 10% do elemento está visível
     rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+        if (entry.isIntersecting) { // Se o elemento está visível
+            entry.target.style.opacity = '1'; // Torna visível
+            entry.target.style.transform = 'translateY(0)'; // Remove deslocamento
         }
     });
 }, observerOptions);
 
 // Observar elementos para animação
+// Aplica animação de entrada nos elementos selecionados
 document.querySelectorAll('.valor-card, .norma-item, .tour-content, .contato-grid').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+    el.style.opacity = '0'; // Começa invisível
+    el.style.transform = 'translateY(20px)'; // Começa 20px abaixo
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; // Animação suave
+    observer.observe(el); // Começa a observar o elemento
 });
 
 // Efeito de digitação no hero
+// Simula texto sendo digitado no título principal
 function typeWriter(element, text, speed = 50) {
     let i = 0;
-    element.innerHTML = '';
+    element.innerHTML = ''; // Limpa o conteúdo
     
     function type() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
+            element.innerHTML += text.charAt(i); // Adiciona uma letra
             i++;
-            setTimeout(type, speed);
+            setTimeout(type, speed); // Chama a si mesmo após delay
         }
     }
     type();
@@ -172,20 +186,23 @@ window.addEventListener('load', function() {
     const heroTitle = document.querySelector('.hero-content h1');
     if (heroTitle) {
         const originalText = heroTitle.innerHTML;
-        heroTitle.innerHTML = '';
+        heroTitle.innerHTML = ''; // Limpa o título
         setTimeout(() => {
-            typeWriter(heroTitle, originalText);
-        }, 500);
+            typeWriter(heroTitle, originalText); // Começa o efeito de digitação
+        }, 500); // Espera 0.5 segundos
     }
 });
 
-// Sistema de logout (opcional - para adicionar um botão de logout)
+// Sistema de logout (opcional)
+// Adiciona botão de logout se usuário estiver logado
 function setupLogout() {
-    // Criar botão de logout se o usuário estiver logado
+    // Verifica se existe usuário logado
     const userData = localStorage.getItem('conectahub_user');
     if (userData && JSON.parse(userData).loggedIn) {
+        // Cria botão de logout
         const logoutBtn = document.createElement('button');
         logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Sair';
+        // Estilos do botão
         logoutBtn.style.cssText = `
             background: transparent;
             border: 2px solid var(--accent);
@@ -197,6 +214,7 @@ function setupLogout() {
             transition: all 0.3s ease;
         `;
         
+        // Efeitos hover do botão
         logoutBtn.addEventListener('mouseenter', function() {
             this.style.background = 'var(--accent)';
             this.style.color = 'white';
@@ -207,28 +225,31 @@ function setupLogout() {
             this.style.color = 'var(--accent)';
         });
         
+        // Ação de logout
         logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('conectahub_user');
-            window.location.href = 'login.html';
+            localStorage.removeItem('conectahub_user'); // Remove dados do usuário
+            window.location.href = 'login.html'; // Redireciona para login
         });
         
-        // Adicionar ao header
+        // Adiciona o botão ao menu
         const nav = document.querySelector('.nav');
         if (nav) {
             nav.appendChild(logoutBtn);
         }
         
-        // Atualizar link de login para perfil
+        // Muda o link de login para "Meu Perfil"
         const loginLink = document.querySelector('.nav-links a[href="login.html"]');
         if (loginLink) {
             loginLink.innerHTML = '<i class="fas fa-user"></i> Meu Perfil';
-            loginLink.href = '#';
+            loginLink.href = '#'; // Remove link para login
         }
     }
 }
 
 // Sistema de notificações
+// Mostra mensagens flutuantes na tela
 function showNotification(message, type = 'info') {
+    // Cria elemento da notificação
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -237,6 +258,7 @@ function showNotification(message, type = 'info') {
         <button class="notification-close">&times;</button>
     `;
     
+    // Estilos da notificação
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -254,15 +276,15 @@ function showNotification(message, type = 'info') {
         max-width: 400px;
     `;
     
-    document.body.appendChild(notification);
+    document.body.appendChild(notification); // Adiciona à página
     
-    // Botão de fechar
+    // Botão para fechar notificação
     notification.querySelector('.notification-close').addEventListener('click', function() {
         notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
+        setTimeout(() => notification.remove(), 300); // Remove após animação
     });
     
-    // Remove automático após 5 segundos
+    // Remove automaticamente após 5 segundos
     setTimeout(() => {
         if (notification.parentNode) {
             notification.style.animation = 'slideOutRight 0.3s ease';
@@ -271,6 +293,7 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+// Retorna ícone correto para cada tipo de notificação
 function getNotificationIcon(type) {
     const icons = {
         success: 'check-circle',
@@ -281,6 +304,7 @@ function getNotificationIcon(type) {
     return icons[type] || 'info-circle';
 }
 
+// Retorna cor correta para cada tipo de notificação
 function getNotificationColor(type) {
     const colors = {
         success: '#4CAF50',
@@ -291,29 +315,17 @@ function getNotificationColor(type) {
     return colors[type] || '#2196F3';
 }
 
-// Adicionar estilos de animação para notificações
+// Adiciona estilos CSS para animações das notificações
 const notificationStyles = document.createElement('style');
 notificationStyles.textContent = `
     @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
     }
     
     @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
     }
     
     .notification-close {
@@ -325,9 +337,9 @@ notificationStyles.textContent = `
         margin-left: 10px;
     }
 `;
-document.head.appendChild(notificationStyles);
+document.head.appendChild(notificationStyles); // Adiciona ao cabeçalho da página
 
-// Chamar a função quando a página carregar
+// Chama a função de logout quando a página carrega
 document.addEventListener('DOMContentLoaded', function() {
     setupLogout();
 });

@@ -1,29 +1,31 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Redirecting — ConectaHub</title>
+    <!-- Redireciona automaticamente para a página principal -->
     <meta http-equiv="refresh" content="0; url=./html/index.html">
     <link rel="canonical" href="./html/index.html">
     <style>
+      /* Estilos simples para página de redirecionamento */
       body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; background:#f6f7fb; color:#222 }
       .box{ text-align:center; max-width:520px; padding:24px; border-radius:8px; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,0.06)}
       a { color:#2b6cb0 }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="box">
-      <h1>Redirecionando...</h1>
-      <p>Se não for redirecionado automaticamente, clique em <a href="./html/index.html">Abrir o site</a>.</p>
-      <p style="margin-top:12px; font-size:0.9rem; color:#666">Observação: se você publicou no GitHub Pages, aguarde alguns minutos após o push.</p>
+        <h1>Redirecionando...</h1>
+        <p>Se não for redirecionado automaticamente, clique em <a href="./html/index.html">Abrir o site</a>.</p>
+        <p style="margin-top:12px; font-size:0.9rem; color:#666">Observação: se você publicou no GitHub Pages, aguarde alguns minutos após o push.</p>
     </div>
     <script>
-      // Fallback JS redirect (some setups podem necessitar caminho absoluto)
-      (function(){
-        try { if(location.pathname.endsWith('/')) location.replace('./html/index.html'); }
-        catch(e){}
-      })();
+        // Redirecionamento por JavaScript (fallback caso o meta refresh não funcione)
+        (function(){
+            try { if(location.pathname.endsWith('/')) location.replace('./html/index.html'); }
+            catch(e){}
+        })();
     </script>
-  </body>
+</body>
 </html>

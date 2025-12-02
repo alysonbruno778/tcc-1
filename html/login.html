@@ -4,38 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ConectaHub - Login</title>
+    <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS específico para login -->
     <link rel="stylesheet" href="../css/login-style.css">
 </head>
 <body>
+    <!-- Container principal com duas colunas -->
     <div class="auth-container">
+        <!-- Lado esquerdo: visual/imagem -->
         <div class="auth-visual">
             <h2>Conectando Pessoas, Transformando Indústrias</h2>
             <p>Faça parte da nossa comunidade e descubra como melhoramos a comunicação interna e engajamento no setor industrial.</p>
             <div class="auth-visual-icons">
+                <!-- Ícones decorativos -->
                 <div class="visual-icon">
-                    <i class="fas fa-comments"></i>
+                    <i class="fas fa-comments"></i> <!-- Ícone de conversa -->
                 </div>
                 <div class="visual-icon">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line"></i> <!-- Ícone de gráfico -->
                 </div>
                 <div class="visual-icon">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-users"></i> <!-- Ícone de pessoas -->
                 </div>
             </div>
         </div>
         
+        <!-- Lado direito: formulários -->
         <div class="auth-form-container">
+            <!-- Logo -->
             <div class="logo">
-                <img src="../imagens/logo.jpg" alt="ConectaHub Logo" class="logo-img">
+                <img src="../imagens/logo.jpeg" alt="ConectaHub Logo" class="logo-img">
             </div>
             
+            <!-- Abas para alternar entre login e cadastro -->
             <div class="auth-tabs">
                 <div class="auth-tab" data-tab="login">Login</div>
                 <div class="auth-tab active" data-tab="register">Criar Conta</div>
             </div>
             
-            <!-- Formulário de Login -->
+            <!-- Formulário de Login (começa escondido) -->
             <form id="login-form" class="auth-form">
                 <div class="form-group">
                     <label for="login-email">Email</label>
@@ -46,12 +54,14 @@
                     <label for="login-password">Senha</label>
                     <div class="password-container">
                         <input type="password" id="login-password" class="form-control" placeholder="Sua senha" required>
+                        <!-- Botão para mostrar/esconder senha -->
                         <button type="button" class="toggle-password" data-target="login-password" role="button" tabindex="0" aria-label="Mostrar senha" title="Mostrar senha">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
                 </div>
                 
+                <!-- Opções: lembrar-me e esqueci senha -->
                 <div class="form-options">
                     <div class="remember-me">
                         <input type="checkbox" id="remember">
@@ -60,17 +70,19 @@
                     <a href="#" class="forgot-password">Esqueceu a senha?</a>
                 </div>
                 
+                <!-- Botão de enviar -->
                 <button type="submit" class="auth-button">
                     <i class="fas fa-sign-in-alt"></i>
                     Entrar
                 </button>
                 
+                <!-- Link para alternar para cadastro -->
                 <div class="auth-footer">
                     Não tem uma conta? <a href="#" class="switch-to-register">Cadastre-se</a>
                 </div>
             </form>
             
-            <!-- Formulário de Cadastro -->
+            <!-- Formulário de Cadastro (começa visível) -->
             <form id="register-form" class="auth-form active">
                 <div class="form-group">
                     <label for="register-name">Nome Completo</label>
@@ -102,6 +114,7 @@
                     </div>
                 </div>
                 
+                <!-- Checkbox de termos e condições -->
                 <div class="form-options">
                     <div class="remember-me">
                         <input type="checkbox" id="terms" required>
@@ -114,6 +127,7 @@
                     Criar Conta
                 </button>
                 
+                <!-- Link para alternar para login -->
                 <div class="auth-footer">
                     Já tem uma conta? <a href="#" class="switch-to-login">Faça login</a>
                 </div>
@@ -121,22 +135,22 @@
         </div>
     </div>
 
+    <!-- JavaScript para funcionalidades de login -->
     <script src="../java/login-script.js"></script>
     
-    <!-- Configuração inicial - mostrar cadastro primeiro -->
+    <!-- Script que verifica se usuário já está logado -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Verificar se já existe um usuário logado
+            // Verificar se já existe um usuário logado no localStorage
             const userData = localStorage.getItem('conectahub_user');
             
             if (userData && JSON.parse(userData).loggedIn) {
-                // Se já estiver logado, redirecionar para o site principal
+                // Se já estiver logado, redireciona para o site principal
                 window.location.href = 'index.html';
                 return;
             }
             
-            // Já está configurado no HTML para mostrar cadastro primeiro
-            // Nenhum botão "Voltar ao Site" será adicionado
+            // Não adiciona botão "Voltar ao Site" (decidido manter foco no login/cadastro)
         });
     </script>
 </body>

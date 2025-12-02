@@ -1,55 +1,63 @@
+/* CSS para página de login/cadastro */
+
+/* Remove margens e paddings padrão de todos os elementos */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Inclui padding e border na largura/altura */
 }
 
+/* Variáveis de cores para facilitar manutenção */
 :root {
-    --primary: #5b5b7d;
-    --secondary: #a9aec2;
-    --accent: #95a5c9;
-    --light: #e2e5ee;
-    --white: #ffffff;
-    --dark: #333333;
+    --primary: #5b5b7d;    /* Cor principal (azul escuro) */
+    --secondary: #a9aec2;  /* Cor secundária (cinza azulado) */
+    --accent: #95a5c9;     /* Cor de destaque (azul médio) */
+    --light: #e2e5ee;      /* Cor clara de fundo */
+    --white: #ffffff;      /* Branco */
+    --dark: #333333;       /* Texto escuro */
 }
 
+/* Estilos gerais do corpo */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--dark);
-    background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna */
+    line-height: 1.6; /* Espaçamento entre linhas */
+    color: var(--dark); /* Cor do texto */
+    background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%); /* Gradiente de fundo */
+    min-height: 100vh; /* Altura mínima da tela toda */
+    display: flex; /* Usa flexbox para centralizar */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    padding: 20px; /* Espaço nas bordas em telas pequenas */
 }
 
+/* Container principal de autenticação */
 .auth-container {
-    display: flex;
-    max-width: 1000px;
-    width: 100%;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(91, 91, 125, 0.2);
-    overflow: hidden;
+    display: flex; /* Layout em duas colunas */
+    max-width: 1000px; /* Largura máxima */
+    width: 100%; /* Ocupa 100% disponível */
+    background: var(--white); /* Fundo branco */
+    border-radius: 20px; /* Bordas arredondadas */
+    box-shadow: 0 15px 35px rgba(91, 91, 125, 0.2); /* Sombra elegante */
+    overflow: hidden; /* Esconde conteúdo que ultrapassa */
     position: relative;
 }
 
+/* Lado esquerdo - visual/ilustração */
 .auth-visual {
-    flex: 1;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    flex: 1; /* Ocupa metade do espaço */
+    background: linear-gradient(135deg, var(--primary), var(--accent)); /* Gradiente azul */
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organiza elementos na vertical */
     align-items: center;
     justify-content: center;
     padding: 40px;
-    color: var(--white);
+    color: var(--white); /* Texto branco */
     text-align: center;
     position: relative;
     overflow: hidden;
 }
 
+/* Triângulo decorativo no fundo */
 .auth-visual::before {
     content: '';
     position: absolute;
@@ -61,94 +69,107 @@ body {
     background-size: cover;
 }
 
+/* Título do lado visual */
 .auth-visual h2 {
     font-size: 2.2rem;
     margin-bottom: 1rem;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Fica acima do fundo */
 }
 
+/* Texto do lado visual */
 .auth-visual p {
     font-size: 1.1rem;
-    opacity: 0.9;
+    opacity: 0.9; /* Levemente transparente */
     position: relative;
     z-index: 1;
 }
 
+/* Container dos ícones */
 .auth-visual-icons {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Espaço entre ícones */
     margin-top: 30px;
     position: relative;
     z-index: 1;
 }
 
+/* Estilo de cada ícone */
 .visual-icon {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
     width: 70px;
     height: 70px;
-    border-radius: 50%;
+    border-radius: 50%; /* Torna redondo */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Animação suave */
 }
 
+/* Efeito hover nos ícones */
 .visual-icon:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px); /* Sobe 5px */
+    background: rgba(255, 255, 255, 0.3); /* Fica mais visível */
 }
 
+/* Lado direito - formulários */
 .auth-form-container {
-    flex: 1;
+    flex: 1; /* Ocupa metade do espaço */
     padding: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Centraliza verticalmente */
 }
 
+/* Logo no topo do formulário */
 .logo {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    justify-content: center;
+    justify-content: center; /* Centraliza logo */
 }
 
+/* Imagem da logo */
 .logo-img {
     width: 215px;
     height: 215px;
-    object-fit: contain;
+    object-fit: contain; /* Mantém proporção da imagem */
     margin-right: 5px;
 }
 
+/* Texto do logo */
 .logo span {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary);
 }
 
+/* Abas de login/cadastro */
 .auth-tabs {
     display: flex;
     margin-bottom: 30px;
-    border-bottom: 2px solid var(--light);
+    border-bottom: 2px solid var(--light); /* Linha abaixo das abas */
 }
 
+/* Cada aba individual */
 .auth-tab {
-    flex: 1;
+    flex: 1; /* Cada aba ocupa metade */
     text-align: center;
     padding: 15px;
-    cursor: pointer;
+    cursor: pointer; /* Mostra que é clicável */
     font-weight: 600;
     color: var(--secondary);
     transition: all 0.3s ease;
     position: relative;
 }
 
+/* Aba ativa */
 .auth-tab.active {
     color: var(--primary);
 }
 
+/* Linha azul abaixo da aba ativa */
 .auth-tab.active::after {
     content: '';
     position: absolute;
@@ -159,24 +180,29 @@ body {
     background: var(--accent);
 }
 
+/* Formulários (escondidos por padrão) */
 .auth-form {
-    display: none;
+    display: none; /* Começa escondido */
 }
 
+/* Formulário ativo (visível) */
 .auth-form.active {
     display: block;
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.5s ease; /* Animação de aparecer */
 }
 
+/* Animação de fade in */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Grupo de campo do formulário */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Espaço entre campos */
 }
 
+/* Rótulo dos campos */
 .form-group label {
     display: block;
     margin-bottom: 8px;
@@ -184,6 +210,7 @@ body {
     color: var(--primary);
 }
 
+/* Campos de input, textarea */
 .form-control {
     width: 100%;
     padding: 12px 15px;
@@ -193,31 +220,35 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Quando o campo está em foco (clicado) */
 .form-control:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(149, 165, 201, 0.2);
+    outline: none; /* Remove contorno padrão */
+    border-color: var(--accent); /* Borda azul */
+    box-shadow: 0 0 0 3px rgba(149, 165, 201, 0.2); /* Sombra azul suave */
 }
 
+/* Opções abaixo dos campos (lembrar-me, esqueci senha) */
 .form-options {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Um em cada lado */
     align-items: center;
     margin-bottom: 20px;
 }
 
+/* Checkbox "Lembrar-me" */
 .remember-me {
     display: flex;
     align-items: center;
 }
 
 .remember-me input {
-    margin-right: 8px;
+    margin-right: 8px; /* Espaço entre checkbox e texto */
 }
 
+/* Link "Esqueci a senha" */
 .forgot-password {
     color: var(--accent);
-    text-decoration: none;
+    text-decoration: none; /* Remove sublinhado */
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -226,6 +257,7 @@ body {
     color: var(--primary);
 }
 
+/* Botão principal de autenticação */
 .auth-button {
     width: 100%;
     background: var(--primary);
@@ -240,17 +272,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 10px; /* Espaço entre ícone e texto */
     position: relative;
     overflow: hidden;
 }
 
+/* Efeito hover no botão */
 .auth-button:hover {
     background: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(149, 165, 201, 0.4);
+    transform: translateY(-2px); /* Sobe 2px */
+    box-shadow: 0 5px 15px rgba(149, 165, 201, 0.4); /* Sombra */
 }
 
+/* Efeito de brilho que passa no botão */
 .auth-button::before {
     content: '';
     position: absolute;
@@ -262,41 +296,47 @@ body {
     transition: left 0.5s ease;
 }
 
+/* Mostra o efeito de brilho no hover */
 .auth-button:hover::before {
     left: 100%;
 }
 
+/* Divisor "ou" entre botão e login social */
 .auth-divider {
     text-align: center;
     margin: 25px 0;
     position: relative;
 }
 
+/* Linha do divisor */
 .auth-divider::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 50%; /* No meio verticalmente */
     left: 0;
     width: 100%;
     height: 1px;
     background: var(--light);
 }
 
+/* Texto "ou" sobre a linha */
 .auth-divider span {
-    background: var(--white);
+    background: var(--white); /* Fundo branco para "cortar" a linha */
     padding: 0 15px;
     color: var(--secondary);
     position: relative;
 }
 
+/* Botões de login social */
 .social-login {
     display: flex;
-    gap: 15px;
+    gap: 15px; /* Espaço entre botões */
     margin-bottom: 25px;
 }
 
+/* Cada botão social */
 .social-btn {
-    flex: 1;
+    flex: 1; /* Divide espaço igualmente */
     padding: 12px;
     border: 2px solid var(--light);
     border-radius: 8px;
@@ -311,18 +351,21 @@ body {
 }
 
 .social-btn:hover {
-    border-color: var(--accent);
+    border-color: var(--accent); /* Borda azul */
     transform: translateY(-2px);
 }
 
+/* Cor específica para Google */
 .social-btn.google {
-    color: #DB4437;
+    color: #DB4437; /* Vermelho Google */
 }
 
+/* Cor específica para LinkedIn */
 .social-btn.linkedin {
-    color: #0077B5;
+    color: #0077B5; /* Azul LinkedIn */
 }
 
+/* Rodapé do formulário (link para alternar login/cadastro) */
 .auth-footer {
     text-align: center;
     margin-top: 20px;
@@ -340,6 +383,7 @@ body {
     color: var(--primary);
 }
 
+/* Botão de voltar para o site */
 .back-to-home {
     display: inline-flex;
     align-items: center;
@@ -357,19 +401,20 @@ body {
 .back-to-home:hover {
     color: var(--accent);
     border-color: var(--accent);
-    transform: translateX(-5px);
+    transform: translateX(-5px); /* Move 5px para esquerda */
 }
 
-/* Botão de visualizar senha - CORRIGIDO E AJUSTADO */
+/* Container para campo de senha com botão de visualizar */
 .password-container {
     position: relative;
 }
 
+/* Botão para mostrar/esconder senha */
 .toggle-password {
     position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 14px; /* À direita do campo */
+    top: 50%; /* Meio vertical */
+    transform: translateY(-50%); /* Centraliza exatamente */
     background: var(--light);
     border: none;
     color: var(--primary);
@@ -377,9 +422,9 @@ body {
     font-size: 1.05rem;
     transition: all 0.18s ease;
     padding: 8px 10px;
-    z-index: 2;
-    border-radius: 999px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    z-index: 2; /* Fica acima do campo */
+    border-radius: 999px; /* Totalmente redondo */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Sombra suave */
 }
 
 .toggle-password:hover {
@@ -387,19 +432,15 @@ body {
     background: var(--accent);
 }
 
-/* Ajuste para inputs de senha com botão */
+/* Ajusta campo de senha para dar espaço ao botão */
 .password-container .form-control {
-    padding-right: 70px; /* espaço extra para o botão circular */
+    padding-right: 80px; /* Espaço extra para o botão */
 }
 
-/* Remover qualquer duplicação que possa estar ocorrendo */
-.password-container .toggle-password:not(:first-child) {
-    display: none;
-}
-
+/* Responsividade - Tablet e Celular */
 @media (max-width: 768px) {
     .auth-container {
-        flex-direction: column;
+        flex-direction: column; /* Coloca visual acima do formulário */
     }
     
     .auth-visual {
@@ -407,7 +448,7 @@ body {
     }
     
     .auth-visual h2 {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Título menor */
     }
     
     .auth-form-container {
@@ -415,16 +456,17 @@ body {
     }
     
     .social-login {
-        flex-direction: column;
+        flex-direction: column; /* Botões sociais empilhados */
     }
     
     .form-options {
-        flex-direction: column;
+        flex-direction: column; /* Opções empilhadas */
         gap: 15px;
         align-items: flex-start;
     }
 }
 
+/* Responsividade - Celular pequeno */
 @media (max-width: 480px) {
     .auth-visual h2 {
         font-size: 1.5rem;
